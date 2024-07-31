@@ -207,6 +207,11 @@
             element.classList.add('selected');
             selectedModule = element.innerText;
         }
+
+        window.onload = function() {
+            var firstModule = document.querySelector('.module-list table td:first-child');
+            selectModule(firstModule);
+        };
     </script>
 </body>
 </html>
