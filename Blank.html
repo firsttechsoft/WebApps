@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Blank" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+    <style>
+        .spinner {
+            margin: 100px auto;
+            width: 90px;
+            height: 90px;
+            border: 10px solid lightgray;
+            border-top-color: black;
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #header {
+            position: fixed;
+            bottom: 20px;
+            left: 48%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0.9;
+        }
+        #header img {
+            max-width: 100px; 
+            height: auto;
+        }
+        .business-requirements {
+            font-size: 10px;
+        }
+        .loading-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        
+        .cancel-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #f00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancel-button:hover {
+            background-color: #d00;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img src="LOGO-firsttech.png" alt="Company Logo">
+        <div class="business-requirements">© 2003 - 2024 Firsttech Software 仁維軟體 版權所有</div>
+    </div>
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingText">Loading</div>
+    <!--<button class="cancel-button" id="cancelButton">取消</button>-->
+
+    <script>
+        let secondsRemaining = 14; 
+        let commandWindow;
+
+        const timeout = setTimeout(() => {
+            window.location.href = 'Final.html';
+            if (commandWindow) {
+                commandWindow.close();
+            }
+        }, secondsRemaining * 1000); 
+
+        const cancelButton = document.getElementById('cancelButton');
+        if (cancelButton) {
+            cancelButton.addEventListener('click', () => {
+                if (commandWindow) {
+                    commandWindow.close();
+                }
+                window.location.href = 'Overview.html';
+                clearTimeout(timeout); 
+            });
+        }
+
+        function updateLoadingText() {
+            const loadingText = document.getElementById('loadingText');
+            loadingText.textContent = 'Loading' + '.'.repeat(Math.abs(secondsRemaining-14));
+        }
+
+        const interval = setInterval(() => {
+            secondsRemaining--;
+            updateLoadingText();
+
+            if (secondsRemaining <= 0) {
+                clearInterval(interval); 
+            }
+        }, 1000);
+
+        updateLoadingText();
+
+        window.addEventListener('message', (event) => {
+            if (event.data === 'open') {
+                commandWindow = event.source;
+            }
+        });
+
+        setTimeout(() => {
+            if (cancelButton) {
+                cancelButton.classList.add('hidden');
+            }
+        }, 12000);
+    </script>
+</body>
+</html>

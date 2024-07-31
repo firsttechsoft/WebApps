@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="FrontPage" content="width=device-width, initial-scale=1.0">
+    <title>業務需求</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+			margin: 0;
+            padding: 0;
+        }
+		.banner {
+            display: flex;
+            justify-content: space-between;
+            background-color: #0066cc;
+            padding: 2px 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 1);
+            border-bottom: 1px solid #ddd;
+        }
+		#header {
+			position: fixed;
+			bottom: 20px;
+			left: 48%;
+			transform: translateX(-50%);
+			text-align: center;
+			opacity: 0.9;
+		}
+		#header img {
+			max-width: 100px; 
+			height: auto;
+		}
+		.business-requirements {
+			font-size:10px;
+		}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .header-container .file-upload {
+            flex-grow: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-container .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .header-container .user-info span {
+            margin-right: 10px;
+        }
+        .header-container .user-info button {
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .header-container .user-info button:hover {
+            background-color: #d32f2f;
+        }
+        .table-container {
+            max-height: 505px;
+            overflow-y: auto;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+			min-width: 150px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        .file-upload label {
+			display: none;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .file-upload label:hover {
+            background-color: #45a049;
+        }
+        .scan-button {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px;
+        }
+        .scan-button button {
+            padding: 9px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .scan-button button:hover {
+            background-color: #0056b3;
+        }
+		.loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 48%;
+            transform: translate(-50%, -50%);
+        }
+        .loading .spinner {
+            margin: 100px auto;
+            width: 90px;
+            height: 90px;
+            border: 10px solid lightgray;
+            border-top-color: black;
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+		.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+	<span>Enterprise Master Planning</span>
+    <span>LCD, LCM & MC最佳化撮合</span>
+</div>
+	<div id="header">
+        <img src="LOGO-firsttech.png" alt="Company Logo">
+		<div class="business-requirements">© 2003 - 2024 Firsttech Software 仁維軟體 版權所有</div>
+    </div>
+    <div class="header-container">
+        <div>業務需求</div>
+        <div class="file-upload">
+            <label for="upload">選取檔案</label>
+            <input type="file" id="upload" accept=".xlsx" />
+        </div>
+        <div class="user-info">
+            <span id="user-greeting">wasAdmin 您好</span>
+            <button id="logout-button" onclick="logout()">登出</button>
+        </div>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>PROD</th>
+                    <th>需求月份</th>
+                    <th>需求週別</th>
+                    <th>原計畫週別</th>
+                    <th>需求數量</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <td>NB00010081</td>
+                    <td>202407</td>
+                    <td>W28</td>
+                    <td>W29</td>
+                    <td>14350</td>
+                </tr>
+                <tr>
+                    <td>NB00010081</td>
+                    <td>202408</td>
+                    <td>W33</td>
+                    <td>W34</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>NB00010083</td>
+                    <td>202408</td>
+                    <td>W33</td>
+                    <td>W34</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>NB00010084</td>
+                    <td>202408</td>
+                    <td>W33</td>
+                    <td>W37</td>
+                    <td>3000</td>
+                </tr>
+                <tr>
+                    <td>NB00010085</td>
+                    <td>202409</td>
+                    <td>W36</td>
+                    <td>W37</td>
+                    <td>3600</td>
+                </tr>
+                <tr>
+                    <td>NB00010086</td>
+                    <td>202407</td>
+                    <td>W28</td>
+                    <td>W34</td>
+                    <td>17000</td>
+                </tr>
+                <tr>
+                    <td>NB00010087</td>
+                    <td>202407</td>
+                    <td>W28</td>
+                    <td>W34</td>
+                    <td>17000</td>
+                </tr>
+                <tr>
+                    <td>NB00010088</td>
+                    <td>202407</td>
+                    <td>W28</td>
+                    <td>W35</td>
+                    <td>20000</td>
+                </tr>
+                <tr>
+                    <td>NB00010089</td>
+                    <td>202407</td>
+                    <td>W28</td>
+                    <td>W29</td>
+                    <td>30000</td>
+                </tr>
+                <tr>
+                    <td>NB00010089</td>
+                    <td>202407</td>
+                    <td>W29</td>
+                    <td>W30</td>
+                    <td>15000</td>
+                </tr>
+                <tr>
+                    <td>NB00010089</td>
+                    <td>202408</td>
+                    <td>W33</td>
+                    <td>W35</td>
+                    <td>25000</td>
+                </tr>
+                <tr>
+                    <td>NB00010092</td>
+                    <td>202407</td>
+                    <td>W29</td>
+                    <td>W35</td>
+                    <td>30000</td>
+                </tr>
+                <tr>
+                    <td>NB00010093</td>
+                    <td>202407</td>
+                    <td>W29</td>
+                    <td>W34</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>NB00010094</td>
+                    <td>202407</td>
+                    <td>W29</td>
+                    <td>W30</td>
+                    <td>3000</td>
+                </tr>
+                <tr>
+                    <td>NB00010095</td>
+                    <td>202407</td>
+                    <td>W30</td>
+                    <td>W33</td>
+                    <td>46600</td>
+                </tr>
+                <tr>
+                    <td>NB00010096</td>
+                    <td>202407</td>
+                    <td>W29</td>
+                    <td>W30</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>NB00010097</td>
+                    <td>202407</td>
+                    <td>W29</td>
+                    <td>W30</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>NB00010098</td>
+                    <td>202408</td>
+                    <td>W32</td>
+                    <td>W34</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>NB00010098</td>
+                    <td>202408</td>
+                    <td>W32</td>
+                    <td>W35</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>NB00010096</td>
+                    <td>202408</td>
+                    <td>W33</td>
+                    <td>W35</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>NB00010101</td>
+                    <td>202408</td>
+                    <td>W33</td>
+                    <td>W35</td>
+                    <td>11500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="scan-button">
+        <button id="scan-energy">掃描能量</button>
+    </div>
+	<div class="loading">
+        <div class="spinner"></div>
+    </div>
+	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById('upload').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var data = new Uint8Array(event.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+                var firstSheet = workbook.Sheets[workbook.SheetNames[1]];
+                var jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+                jsonData = jsonData.map(row => row.slice(1, -2));
+
+                var tableBody = document.getElementById('table-body');
+                tableBody.innerHTML = '';
+                jsonData.forEach(function(row) {
+                    var tr = document.createElement('tr');
+                    row.forEach(function(cell) {
+                        var td = document.createElement('td');
+                        td.textContent = cell;
+                        tr.appendChild(td);
+                    });
+                    tableBody.appendChild(tr);
+                });
+            };
+            reader.readAsArrayBuffer(file);
+        });
+
+        document.getElementById('scan-energy').addEventListener('click', function() {
+            document.querySelector('.header-container').style.display = 'none';
+			document.querySelector('.banner').style.display = 'none';
+			document.querySelector('.table-container').style.display = 'none';
+            document.querySelector('.loading').style.display = 'block';
+			document.getElementById('scan-energy').classList.add('hidden');
+            setTimeout(function() {
+                window.location.href = 'Overview.html';
+            }, 1000);
+        });
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
