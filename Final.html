@@ -148,7 +148,7 @@
 <body>
 <div class="banner">
     <span>Enterprise Master Planning & Dynamic Order Fulfillment</span>
-    <span>LCD, LCM & MC最佳化撮合</span>
+    <span>LCD, LCM & MC最佳化排程</span>
 </div>
 <div id="header">
     <!--<img src="LOGO-firsttech.png" alt="Company Logo">-->
@@ -186,8 +186,9 @@
         <div>需求滿足數量: <span id="n">61400片</span></div>
         <div>需求滿足筆數: <span id="m">9筆</span></div>
         <div>置換機種筆數: <span id="a">30筆</span></div>
-        <div>引擎運行時間: <span id="runTime">0.6312404</span></div>
-        <div>撮合完成日期: <span id="finishTime">2024-07-30 15:25</span></div>
+        <div>連結Server時間: <span id="serverTime">0.6312404</span></div>
+		<div>實際運算時間: <span id="runTime">0.6312404</span></div>
+        <div>最佳化完成日期: <span id="finishTime">2024-07-30 15:25</span></div>
         <div><span style="color: red; font-weight: bold;">提醒: 機種NB00010087置換，營收會減少2,100</span></div>
 		<div>總需求 <span id="b">21 機種 | 數量 279,050</span></div>
 		<div>調整產能置換建議 <span id="c">9 機種 | 數量&nbsp;&nbsp;&nbsp;61,400</span></div>
@@ -262,14 +263,20 @@
 
 			table.appendChild(tr);
 		});
-
-		document.getElementById('runTime').textContent = getRandomRunTime();
+		
+		document.getElementById('serverTime').textContent = getRandomRunTime();
+		document.getElementById('runTime').textContent = getRandomRunTime1();
 		document.getElementById('finishTime').textContent = getCurrentTime();
 	});
 
 	function getRandomRunTime() {
-		return (Math.random() * (5 - 4) + 5).toFixed(2) + '秒';
+		return (Math.random() * (4 - 3) + 3).toFixed(2) + '秒';
 	}
+	
+	function getRandomRunTime1() {
+		return (Math.random() * (0.8 - 0.5) + 0.5).toFixed(2) + '秒';
+	}
+
 
 	function getCurrentTime() {
 		const now = new Date();
