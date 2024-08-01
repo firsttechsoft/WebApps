@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="Final" content="width=device-width, initial-scale=1.0">
-    <title>撮合结果</title>
+    <title>模擬結果</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -155,7 +155,7 @@
     <div class="business-requirements">Copyright 2024 © 仁維軟體科技 Firsttech Software</div>
 </div>
 <div class="header-container">
-    <div>撮合结果</div>
+    <div>模擬結果</div>
     <div class="user-info">
         <span id="user-greeting">wasAdmin 您好</span>
         <button id="logout-button" onclick="logout()">登出</button>
@@ -189,11 +189,15 @@
         <div>引擎運行時間: <span id="runTime">0.6312404</span></div>
         <div>撮合完成日期: <span id="finishTime">2024-07-30 15:25</span></div>
         <div><span style="color: red; font-weight: bold;">提醒: 機種NB00010087置換，營收會減少2,100</span></div>
+		<div>總需求 <span id="b">21 機種 | 數量 279,050</span></div>
+		<div>調整產能置換建議 <span id="c">9 機種 | 數量&nbsp;&nbsp;&nbsp;61,400</span></div>
+		<div>原計畫 9 機種營收 <span id="d">100,100</span></div>
+		<div>置換後 9 機種營收 <span id="e">98,000</span></div>
     </div>
 </div>
 
 <button class="back-button" id="backButton">返回首頁</button>
-<button class="last-button" id="lastButton">能量總攬</button>
+<button class="last-button" id="lastButton">能量總覽</button>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const table = document.getElementById('resultTable').getElementsByTagName('tbody')[0];
@@ -264,7 +268,7 @@
 	});
 
 	function getRandomRunTime() {
-		return (Math.random() * (7 - 5) + 5).toFixed(2) + '秒';
+		return (Math.random() * (5 - 4) + 5).toFixed(2) + '秒';
 	}
 
 	function getCurrentTime() {
