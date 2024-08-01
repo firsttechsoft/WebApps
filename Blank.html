@@ -71,7 +71,7 @@
     <!--<button class="cancel-button" id="cancelButton">取消</button>-->
 
     <script>
-        let secondsRemaining = 14; 
+        let secondsRemaining = 5; 
         let commandWindow;
 
         const timeout = setTimeout(() => {
@@ -94,7 +94,7 @@
 
         function updateLoadingText() {
             const loadingText = document.getElementById('loadingText');
-            loadingText.textContent = 'Loading' + '.'.repeat(Math.abs(secondsRemaining-14));
+            loadingText.textContent = 'Loading' + '.'.repeat(Math.abs(secondsRemaining-5));
         }
 
         const interval = setInterval(() => {
