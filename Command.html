@@ -163,7 +163,7 @@ Solution:
 		let index = 0;
         function displayLogLines(logLines) {
             const container = document.getElementById('log-container');
-            let linesToShow = Math.floor(Math.random() * 7) + 3;
+            let linesToShow = Math.floor(Math.random() * 9) + 5;
 
             function showNextLine() {
                 if (showLines){
@@ -177,10 +177,10 @@ Solution:
 						container.scrollTop = container.scrollHeight;
 
 						if (linesToShow === 0) {
-							linesToShow = Math.floor(Math.random() * 7) + 3;
-							setTimeout(showNextLine, 300);
+							linesToShow = Math.floor(Math.random() * 9) + 5;
+							setTimeout(showNextLine, 100);
 						} else {
-							setTimeout(showNextLine, 50);
+							setTimeout(showNextLine, 25);
 						}
 					}
 				}
@@ -195,7 +195,7 @@ Solution:
         window.onload = function() {
             setTimeout(() => {
                 window.close();
-            }, 14000);
+            }, 5000);
         };
 
         window.addEventListener('message', (event) => {
