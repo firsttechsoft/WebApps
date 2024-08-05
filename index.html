@@ -166,8 +166,8 @@
         <!--<img src="LOGO-firsttech.png" alt="Company Logo" class="watermark">-->
         <div class="container">
             <h1></h1>
-            <input type="text" id="username" placeholder="帳號">
-            <input type="password" id="password" placeholder="密碼">
+            <input type="text" id="username" placeholder="wasAdmin">
+            <input type="password" id="password" placeholder="．．．．．．．．">
             <div class="error" id="error-message">帳號或密碼錯誤</div>
             <div class="error" id="module-error-message">請選擇功能</div>
             <button onclick="login()">登入</button>
@@ -191,7 +191,7 @@
                 document.getElementById('module-error-message').style.display = 'none';
             }
 
-            if (username === 'wasAdmin' && password === 'wasAdmin') {
+            if (username === '' && password === '') {
                 window.location.href = 'FrontPage.html';
             } else {
                 document.getElementById('error-message').style.display = 'block';
