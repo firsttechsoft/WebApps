@@ -189,11 +189,11 @@
         <div>連結Server時間: <span id="serverTime">0.6312404</span></div>
 		<div>實際運算時間: <span id="runTime">0.6312404</span></div>
         <div>模擬完成日期: <span id="finishTime">2024-07-30 15:25</span></div>
-        <div><span style="color: red; font-weight: bold;">提醒: 機種NB00010087置換，營收會減少2,100</span></div>
+        <div><span style="color: red; font-weight: bold;">提醒: 機種NB00010087置換，營收減少NT$2.1M</span></div>
 		<div>總需求 <span id="b">21 機種 | 數量 279,050片</span></div>
 		<div>調整產能置換建議 <span id="c">9 機種 | 數量&nbsp;&nbsp;&nbsp;61,400片</span></div>
-		<div>原計畫 9 機種營收 <span id="d">100,100</span></div>
-		<div>置換後 9 機種營收 <span id="e">98,000</span></div>
+		<div>原計畫 9 機種營收 <span id="d">NT$100.1M</span></div>
+		<div>置換後 9 機種營收 <span id="e">NT$98.0M</span></div>
     </div>
 </div>
 
@@ -246,7 +246,7 @@
 
 			const abnormalCell = document.createElement('td');
 			if (row[0] === "NB00010087") {
-				abnormalCell.textContent = '!';
+				abnormalCell.textContent = '營收減少NT$2.1M';
 				abnormalCell.classList.add('abnormal');
 			} else {
 				abnormalCell.textContent = '';
